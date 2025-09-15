@@ -57,6 +57,7 @@ git clone https://github.com/WZDTHU/TiM.git && cd TiM
 
 ```bash
 conda create -n tim_env python=3.10
+conda activate tim_env
 pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu118
 pip install flash-attn
 pip install -r requirements.txt
