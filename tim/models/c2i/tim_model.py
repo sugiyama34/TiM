@@ -330,7 +330,7 @@ class TiM(nn.Module):
             return freqs_cos.unsqueeze(1), freqs_sin.unsqueeze(1)
             
 
-    def forward(self, x, t, r, y, attn_type='flash_attn', return_zs=False, jvp=False):
+    def forward(self, x, t, r, y, attn_type='flash_attn', return_zs=False, derivative=False):
         """
         Forward pass of TiM.
         x: (N, C, H, W) tensor of spatial inputs (images or latent representations of images)
@@ -350,7 +350,7 @@ class TiM(nn.Module):
         )      
 
         for i, block in enumerate(self.blocks):
-            if (not self.use_checkpoint) or jvp:
+            if (not self.use_checkpoint) or derivative:
                 x = block(x, c, freqs_cos, freqs_sin, attn_type, delta_embed)   # (N, T, D)
             else:
                 x = torch.utils.checkpoint.checkpoint(
