@@ -92,7 +92,7 @@ class TransitionSchedule:
         model_kwargs['return_zs'] = False
         def model_jvp(x_t, t, r):
             model_kwargs['attn_type'] = 'vanilla_attn'
-            model_kwargs['jvp'] = True
+            model_kwargs['derivative'] = True
             t_input = self.transport.c_noise(t.flatten())
             r_input = self.transport.c_noise(r.flatten())
             return model(x_t, t_input, r_input, **model_kwargs)
@@ -116,7 +116,7 @@ class TransitionSchedule:
             if type(v) == torch.Tensor:
                 model_kwargs[k] = model_kwargs[k][n_diffusion: ]
         model_kwargs['return_zs'] = False
-        model_kwargs['jvp'] = True
+        model_kwargs['derivative'] = True
     
         def xfunc(t):
             alpha_t, sigma_t, _, _ = self.transport.interpolant(t)
