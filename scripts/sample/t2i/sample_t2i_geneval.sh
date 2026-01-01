@@ -1,6 +1,6 @@
 torchrun \
     --nnodes 1 \
-    --nproc_per_node 4 \
+    --nproc_per_node 1 \
     projects/sample/sample_t2i_geneval_ddp.py \
     --config configs/t2i/tim_xl_p1_t2i.yaml \
     --ckpt checkpoints/t2i_model.bin \
@@ -17,7 +17,7 @@ torchrun \
 
 torchrun \
     --nnodes 1 \
-    --nproc_per_node 4 \
+    --nproc_per_node 1 \
     projects/sample/sample_t2i_geneval_ddp.py \
     --config configs/t2i/tim_xl_p1_t2i.yaml \
     --ckpt checkpoints/t2i_model.bin \
@@ -34,7 +34,7 @@ torchrun \
 
 torchrun \
     --nnodes 1 \
-    --nproc_per_node 4 \
+    --nproc_per_node 1 \
     projects/sample/sample_t2i_geneval_ddp.py \
     --config configs/t2i/tim_xl_p1_t2i.yaml \
     --ckpt checkpoints/t2i_model.bin \

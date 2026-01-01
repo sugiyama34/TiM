@@ -14,3 +14,4 @@ einops
 triton
 torchdiffeq
 wandb
+omegaconf==2.3.0

@@ -34,11 +34,14 @@ RUN conda tos accept --override-channels --channel https://repo.anaconda.com/pkg
     conda create -y -n tim_env python=3.10 && \
     conda run -n tim_env pip install -U pip && \
     conda run -n tim_env pip install psutil && \
-    conda run -n tim_env pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu118 && \
-    conda run -n tim_env pip install --no-cache-dir --no-build-isolation flash-attn 2> error_message && \
-    conda run -n tim_env pip install -r requirements.txt && \
-    conda run -n tim_env pip install -e .
+    conda run -n tim_env pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu118
+RUN conda run -n tim_env pip install --no-cache-dir --no-build-isolation flash-attn
+
+COPY requirements.txt /tmp/requirements.txt
+RUN conda run -n tim_env pip install -r /tmp/requirements.txt
+# RUN conda run -n tim_env pip install -e .
+
+RUN echo 'source /opt/conda/etc/profile.d/conda.sh' >> ~/.bashrc && \
+    echo 'conda activate tim_env' >> ~/.bashrc
 
 CMD /bin/bash
-CMD ["conda", "activate", "tim_env"]
-

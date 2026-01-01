@@ -1,5 +1,5 @@
 NNODES=1
-GPUS_PER_NODE=4
+GPUS_PER_NODE=1
 MASTER_ADDR="localhost"
 export MASTER_PORT=60563
 mkdir -p workdir/c2i/tim_b_p4
